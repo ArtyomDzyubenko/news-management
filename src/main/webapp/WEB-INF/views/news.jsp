@@ -1,73 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
-<html lang="en-US">
 <head>
-	<meta charset="UTF-8" />
-	<title> News management </title>
+	<title><spring:message code="app.title"/></title>
 </head>
 <body ng-app="myApp">
 <div ng-controller="NewsController as newsCtrl">
-	<h1> News management </h1>
+	<div>
+	    <h1><spring:message code="app.title"/></h1>
+    </div>
+
+    <div>
+	    <a href='?lang=en'><spring:message code="app.lang.en"/></a> | <a href='?lang=ru'><spring:message code="app.lang.ru"/></a>
+    </div>
+
+    <div>
+        <h2><spring:message code="app.welcome"/>${who}</h2>
+
+        <form action='<spring:url value="/logout"/>' method="post">
+                <input value="<spring:message code="app.news.button.logout"/>" type="submit">
+        </form>
+    </div>
+
+    <div>
+        <h3><spring:message code="app.news.form.add"/></h3>
+    </div>
+
 	<form ng-submit="newsCtrl.submit()" name="newsForm" method="POST">
 	    <input type="hidden" ng-model="newsCtrl.news.id" />
 		<table>
             <tr>
 				<td>
-                    Title:
+                    <spring:message code="app.news.title"/>
                 </td>
                 <td>
-                    <input type="text" name="title" ng-model="newsCtrl.news.title" required/>
-                    <span ng-show="newsForm.title.$error.required" class="msg-val">Title is required.</span>
+                    <input type="text" name="title" ng-model="newsCtrl.news.title" size="98" required/>
+                    <span ng-show="newsForm.title.$error.required" class="msg-val"><spring:message code="app.news.validation.title"/></span>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-				    Date:
+				    <spring:message code="app.news.date"/>
 				</td>
 				<td>
-				    <input type="text" name="date" ng-model="newsCtrl.news.date" required/>
+				    <input type="text" name="date" ng-model="newsCtrl.news.date" size="98" required/>
 				    <span ng-show="newsForm.date.$error.required" class="msg-val">Date is required.</span>
 				</td>
 			</tr>
 
 			<tr>
-				<%--<td>Brief: </td> <td><input type="text" name="brief" ng-model="newsCtrl.news.brief" required/>--%>
 				<td>
-				    Brief:
+				    <spring:message code="app.news.brief"/>
 				</td>
 				<td>
-				    <textarea name="brief" ng-model="newsCtrl.news.brief" required></textarea>
-				    <span ng-show="newsForm.brief.$error.required" class="msg-val">Brief is required.</span>
+				    <textarea name="brief" ng-model="newsCtrl.news.brief" rows="4" cols="100" required></textarea>
+				    <span ng-show="newsForm.brief.$error.required" class="msg-val"><spring:message code="app.news.validation.brief"/></span>
 				</td>
 			</tr>
 
 			<tr>
-			    <%--Content: </td> <td> <input type="text" name="content" ng-model="newsCtrl.news.content" required/>--%>
 				<td>
-				    Content:
+				    <spring:message code="app.news.content"/>
 				</td>
 				<td>
-				    <textarea name="content" ng-model="newsCtrl.news.content" required></textarea>
-				    <span ng-show="newsForm.content.$error.required" class="msg-val">Content is required.</span>
+				    <textarea name="content" ng-model="newsCtrl.news.content" rows="10" cols="100" required></textarea>
+				    <span ng-show="newsForm.content.$error.required" class="msg-val"><spring:message code="app.news.validation.content"/></span>
 				</td>
 			</tr>
 
 			<tr>
 			    <td colspan="2">
-                    <input type="submit" value="{{!newsCtrl.news.id ? 'Add' : 'Update'}}"/>
-                    <input type="button" ng-click="newsCtrl.reset()" value="Reset"/>
+                    <input type="submit" value="{{!newsCtrl.news.id ? '<spring:message code="app.news.button.add"/>' : '<spring:message code="app.news.button.update"/>'}}"/>
+                    <input type="button" ng-click="newsCtrl.reset()" value="<spring:message code="app.news.button.reset"/>"/>
                 </td>
 			</tr>
         </table>
 	</form>
+
 	<table>
 		<tr>
 		    <th>ID</th>
-		    <th>Title</th>
-		    <th>Date</th>
-		    <th>Brief</th>
-		    <th>Content</th>
-		    <th><input type="button" ng-click="newsCtrl.removeNewsList()" value="Delete"/></th>
+		    <th><spring:message code="app.news.title"/></th>
+		    <th><spring:message code="app.news.date"/></th>
+		    <th><spring:message code="app.news.brief"/></th>
+		    <th><spring:message code="app.news.content"/></th>
+		    <th><input type="button" ng-click="newsCtrl.removeNewsList()" value="<spring:message code="app.news.button.delete"/>"/></th>
 		</tr>
 		<tr ng-repeat="row in newsCtrl.newsList">
 			<td><span ng-bind="row.id"></span></td>
@@ -77,7 +96,7 @@
 			<td><span ng-bind="row.content"></span></td>
 			<td><input name="delete" type="checkbox" ng-model="row.selected"/></td>
 			<td>
-				<input type="button" ng-click="newsCtrl.edit(row.id)" value="Edit"/>
+				<input type="button" ng-click="newsCtrl.edit(row.id)" value="<spring:message code="app.news.button.edit"/>"/>
 			</td>
 		</tr>
 	</table>

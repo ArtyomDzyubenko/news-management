@@ -1,12 +1,17 @@
 package com.epam.newsmanagement.service;
 
 import com.epam.newsmanagement.dao.NewsDAO;
+import com.epam.newsmanagement.dto.NewsDTO;
+import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
 import com.epam.newsmanagement.entity.News;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Log4j
 @Service("newsService")
 @Transactional
 public class NewsServiceImpl implements NewsService {
@@ -15,29 +20,38 @@ public class NewsServiceImpl implements NewsService {
     private NewsDAO newsDAO;
 
     @Override
-    public List<News> findAllNews() {
-        return  newsDAO.findAllNews();
+    public List<NewsDTO> findAllNews() {
+        return  newsDAO.findAllNews()
+                .stream()
+                .map(NewsDTOConverter::Entity2DTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public boolean saveNews(News news) {
-        if (newsDAO.isNewsExist(news.getTitle())) {
+    public boolean saveNews(NewsDTO news) {
+        News entity = NewsDTOConverter.DTO2Entity(news);
+
+        if (newsDAO.isNewsExist(entity.getTitle())) {
             return false;
         } else {
-            newsDAO.saveNews(news);
+            newsDAO.saveNews(entity);
             return true;
         }
     }
 
     @Override
-    public News findNewsById(Long id) {
-        return newsDAO.findNewsById(id);
+    public NewsDTO findNewsById(Long id) {
+        News entity = newsDAO.findNewsById(id);
+
+        return NewsDTOConverter.Entity2DTO(entity);
     }
 
 
     @Override
-    public void updateNews(News news) {
-        newsDAO.updateNews(news);
+    public void updateNews(NewsDTO news) {
+        News entity = NewsDTOConverter.DTO2Entity(news);
+
+        newsDAO.updateNews(entity);
     }
 
     @Override

@@ -8,7 +8,6 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
         fetchAllNews: fetchAllNews,
         createNews: createNews,
         updateNews: updateNews,
-        /*deleteNews: deleteNews,*/
         deleteNewsList: deleteNewsList
     };
 
@@ -22,7 +21,6 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching News list');
                 deferred.reject(errResponse);
             }
         );
@@ -37,7 +35,6 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating News');
                 deferred.reject(errResponse);
             }
         );
@@ -53,27 +50,11 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while updating News');
                 deferred.reject(errResponse);
             }
         );
         return deferred.promise;
     }
-
-    /*function deleteNews(id) {
-        var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI + id)
-            .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                console.error('Error while deleting News');
-                deferred.reject(errResponse);
-            }
-        );
-        return deferred.promise;
-    }*/
 
     function deleteNewsList(newsRemoveList) {
         var deferred = $q.defer();
@@ -83,7 +64,6 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while deleting News list');
                 deferred.reject(errResponse);
             }
         );

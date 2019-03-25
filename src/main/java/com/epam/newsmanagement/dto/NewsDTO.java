@@ -1,32 +1,13 @@
-package com.epam.newsmanagement.entity;
+package com.epam.newsmanagement.dto;
 
-import com.epam.newsmanagement.dto.NewsDTO;
-import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
+public class NewsDTO {
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Entity
-@Table(name = "NEWS")
-public class News implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "newsSequence")
-    @SequenceGenerator(name = "newsSequence", sequenceName = "NEWS_SEQUENCE")
-    @Column(name = "NEWS_ID")
     private Long id;
 
-    @Column(name = "NEWS_TITLE")
+
     private String title;
-
-    @Column(name = "NEWS_CREATE_DATE")
     private String date;
-
-    @Column(name = "NEWS_BRIEF")
     private String brief;
-
-    @Column(name = "NEWS_CONTENT")
     private String content;
 
     public Long getId() {

@@ -2,12 +2,12 @@
  
 angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', function($scope, NewsService) {
     var self = this;
+
     self.news={id:null, title:'', date:'', brief:'', content:'', selected:false};
     self.newsList=[];
 
     self.submit = submit;
     self.edit = edit;
-    /*self.remove = remove;*/
     self.reset = reset;
     self.removeNewsList = removeNewsList;
  
@@ -44,17 +44,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
             }
         );
     }
- 
-    /*function deleteNews(id){
-        NewsService.deleteNews(id)
-            .then(
-            fetchAllNews,
-            function(errResponse){
-                console.error('Error while deleting News');
-            }
-        );
-    }*/
- 
+
     function submit() {
         if(self.news.id === null){
             console.log('Saving New News', self.news);
@@ -76,14 +66,6 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
         }
     }
  
-    /*function remove(id){
-        console.log('id to be deleted', id);
-        if(self.news.id === id) {
-            reset();
-        }
-        deleteNews(id);
-    }*/
-
     function removeNewsList(){
         var selectedIds = new Array();
 

@@ -1,6 +1,6 @@
 package com.epam.newsmanagement.controller;
 
-import com.epam.newsmanagement.entity.News;
+import com.epam.newsmanagement.dto.NewsDTO;
 import com.epam.newsmanagement.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,22 +17,22 @@ public class NewsController {
     private NewsService newsService;
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public ResponseEntity<List<News>> getAllNews() {
-        List<News> newsList = newsService.findAllNews();
+    public ResponseEntity<List<NewsDTO>> getAllNews() {
+        List<NewsDTO> newsList = newsService.findAllNews();
 
         return new ResponseEntity<>(newsList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
-    public ResponseEntity<News> getNewsById(@PathVariable("id") Long id) {
-        News news = newsService.findNewsById(id);
+    public ResponseEntity<NewsDTO> getNewsById(@PathVariable("id") Long id) {
+        NewsDTO news = newsService.findNewsById(id);
 
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "/news", method = RequestMethod.POST)
-    public ResponseEntity<Void> addNews(@RequestBody News news, UriComponentsBuilder builder){
+    public ResponseEntity<Void> addNews(@RequestBody NewsDTO news, UriComponentsBuilder builder){
         boolean success = newsService.saveNews(news);
 
         if (!success) {
@@ -47,7 +47,7 @@ public class NewsController {
 
 
     @RequestMapping(value = "/news/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<News> updateNews(@RequestBody News news) {
+    public ResponseEntity<NewsDTO> updateNews(@RequestBody NewsDTO news) {
         newsService.updateNews(news);
 
         return new ResponseEntity<>(news, HttpStatus.OK);
