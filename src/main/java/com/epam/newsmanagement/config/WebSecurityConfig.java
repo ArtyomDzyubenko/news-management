@@ -1,7 +1,9 @@
 package com.epam.newsmanagement.config;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public BCryptPasswordEncoder passwordEncoder() {
       return new BCryptPasswordEncoder();
   }
-  
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -27,14 +29,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-      http.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
+      /*http.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
       .and()
-      .authorizeRequests().antMatchers("/login**").permitAll()
+      .authorizeRequests().antMatchers("/login**", "/register**", "/register", "/registerAction").permitAll()
       .and()
       .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").permitAll()
       .and()
       .logout().logoutSuccessUrl("/login").permitAll()
       .and()
-      .csrf().disable();
+      .csrf().disable();*/
+
+      /*http.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
+              .and()*/
+              http.authorizeRequests().antMatchers("/login**", "/register**", "/register", "/registerAction").permitAll()
+              .and()
+              .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").permitAll()
+              .and()
+              .logout().logoutSuccessUrl("/login").permitAll()
+              .and()
+              .csrf().disable();
   }
 }

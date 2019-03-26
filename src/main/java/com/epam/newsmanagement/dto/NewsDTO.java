@@ -1,10 +1,7 @@
 package com.epam.newsmanagement.dto;
 
 public class NewsDTO {
-
     private Long id;
-
-
     private String title;
     private String date;
     private String brief;

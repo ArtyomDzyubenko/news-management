@@ -18,5 +18,5 @@ values('user','$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu', 1)
 insert into AUTHORITY(USERNAME, AUTHORITY)
 values('admin', 'ROLE_ADMIN');
 
-insert into AUTHORITIES(USERNAME, AUTHORITY)
+insert into AUTHORITY(USERNAME, AUTHORITY)
 values('user', 'ROLE_USER');

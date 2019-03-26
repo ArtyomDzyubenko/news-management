@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,18 +12,18 @@
         <h1><spring:message code="app.title"/></h1>
     </div>
 
-	<form action='<spring:url value="/loginAction"/>' name="loginForm" method="post">
+	<form action='<spring:url value="/registerAction"/>' name="registerForm" th:object="${user}" method="post">
         <table>
           <tr>
             <td><spring:message code="app.login.username"/></td>
             <td>
-                <input type="text" name="username" required/>
+                <input type="text" name="username" th:field="*{username}" required/>
             </td>
           </tr>
           <tr>
             <td><spring:message code="app.login.password"/></td>
             <td>
-                <input type="password" name="password" required/>
+                <input type="password" name="password" th:field="*{password}" required/>
             </td>
           </tr>
           <tr>
@@ -30,9 +31,6 @@
           </tr>
         </table>
   </form>
-    <div>
-        <a href="${pageContext.request.contextPath}/register">Registration</a>
-    </div>
   <br/>
 </body>
 </html>
