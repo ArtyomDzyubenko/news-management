@@ -1,6 +1,7 @@
 package com.epam.newsmanagement.controller;
 
 import com.epam.newsmanagement.dto.NewsDTO;
+import com.epam.newsmanagement.entity.Authority;
 import com.epam.newsmanagement.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

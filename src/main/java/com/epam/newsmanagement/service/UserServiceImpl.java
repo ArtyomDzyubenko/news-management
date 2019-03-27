@@ -3,15 +3,15 @@ package com.epam.newsmanagement.service;
 import com.epam.newsmanagement.dao.UserDAO;
 import com.epam.newsmanagement.dto.UserDTO;
 import com.epam.newsmanagement.dtoConverter.UserDTOConverter;
-import com.epam.newsmanagement.entity.Authority;
 import com.epam.newsmanagement.entity.User;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
+@Log4j
 @Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,11 +30,6 @@ public class UserServiceImpl implements UserService {
         if (exist != null) {
             return false;
         } else {
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-
-
-
-
             userDAO.saveUser(entity);
 
             return true;

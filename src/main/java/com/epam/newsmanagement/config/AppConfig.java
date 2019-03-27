@@ -21,7 +21,8 @@ import static org.hibernate.cfg.Environment.*;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScans(value = { @ComponentScan("com.epam.newsmanagement.dao"),
-                          @ComponentScan("com.epam.newsmanagement.service") })
+                          @ComponentScan("com.epam.newsmanagement.service"),
+})
 public class AppConfig {
 
   @Autowired

@@ -1,8 +1,5 @@
 package com.epam.newsmanagement.entity;
 
-import com.epam.newsmanagement.dto.NewsDTO;
-import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 

@@ -35,7 +35,7 @@
                     <spring:message code="app.news.title"/>
                 </td>
                 <td>
-                    <input type="text" name="title" ng-model="newsCtrl.news.title" size="98" required/>
+                    <input type="text" name="title" ng-model="newsCtrl.news.title" size="98" min="3" max="100" required/>
                     <span ng-show="newsForm.title.$error.required" class="msg-val"><spring:message code="app.news.validation.title"/></span>
                 </td>
             </tr>
@@ -55,7 +55,7 @@
                     <spring:message code="app.news.brief"/>
                 </td>
                 <td>
-                    <textarea name="brief" ng-model="newsCtrl.news.brief" rows="4" cols="100" required></textarea>
+                    <textarea name="brief" ng-model="newsCtrl.news.brief" rows="4" cols="100" minlength="3" maxlength="500" required></textarea>
                     <span ng-show="newsForm.brief.$error.required" class="msg-val"><spring:message code="app.news.validation.brief"/></span>
                 </td>
             </tr>
@@ -65,7 +65,7 @@
                     <spring:message code="app.news.content"/>
                 </td>
                 <td>
-                    <textarea name="content" ng-model="newsCtrl.news.content" rows="10" cols="100" required></textarea>
+                    <textarea name="content" ng-model="newsCtrl.news.content" rows="10" cols="100" minlength="3" maxlength="2048" required></textarea>
                     <span ng-show="newsForm.content.$error.required" class="msg-val"><spring:message code="app.news.validation.content"/></span>
                 </td>
             </tr>
