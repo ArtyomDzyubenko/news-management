@@ -91,7 +91,7 @@
         <tr ng-repeat="row in newsCtrl.newsList">
             <td><span ng-bind="row.id"></span></td>
             <td><span ng-bind="row.title"></span></td>
-            <td><span ng-bind="row.date"></span></td>
+            <td><span ng-bind="row.dateString"></span></td>
             <td><span ng-bind="row.brief"></span></td>
             <td><span ng-bind="row.content"></span></td>
             <td><input name="delete" type="checkbox" ng-model="row.selected"/></td>

@@ -18,11 +18,13 @@ public class NewsDTO {
     @Size(min = 3, max = 100)
     private String title;
 
-    /*@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;*/
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
-    @NotBlank
-    private String date;
+    private String dateString;
+
+    /*@NotBlank
+    private String date;*/
 
     @NotBlank
     @Size(min = 3, max = 500)
@@ -40,9 +42,17 @@ public class NewsDTO {
         return title;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
+
+    public String getDateString() {
+        return dateString;
+    }
+
+    /* public String getDate() {
+        return date;
+    }*/
 
     public String getBrief() {
         return brief;
@@ -60,9 +70,14 @@ public class NewsDTO {
         this.title = title;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+        this.dateString = date.getYear() + "/" + date.getMonth() + "/" + date.getDayOfMonth();
     }
+
+    /* public void setDate(String date) {
+        this.date = date;
+    }*/
 
     public void setBrief(String brief) {
         this.brief = brief;
