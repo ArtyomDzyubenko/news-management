@@ -19,28 +19,28 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String showRegisterFrom(Model model) {
-        UserDTO user = new UserDTO();
-        model.addAttribute("user", user);
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new UserDTO());
 
         return "registration";
     }
 
     @RequestMapping(value = "/registerAction", method = RequestMethod.POST)
-    public String addUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result) {
+    public String addUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "registration";
         }
 
-        return "login";
+        boolean success = userService.saveUser(userDTO);
 
-        //boolean success = userService.saveUser(user);
+        if (!success) {
+            model.addAttribute("userExist", "userExist");
 
-        /*if (!success) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return "registration";
         }
 
-        return new ResponseEntity<>(HttpStatus.CREATED);*/
+        return "login";
     }
 }

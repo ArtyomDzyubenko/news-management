@@ -1,10 +1,8 @@
 package com.epam.newsmanagement.entity;
 
-import com.epam.newsmanagement.dto.NewsDTO;
-import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Table(name = "NEWS")
@@ -21,7 +19,7 @@ public class News implements Serializable {
     private String title;
 
     @Column(name = "NEWS_CREATE_DATE")
-    private String date;
+    private Date date;
 
     @Column(name = "NEWS_BRIEF")
     private String brief;
@@ -37,7 +35,7 @@ public class News implements Serializable {
         return title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -57,7 +55,7 @@ public class News implements Serializable {
         this.title = title;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

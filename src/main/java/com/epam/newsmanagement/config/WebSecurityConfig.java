@@ -1,9 +1,7 @@
 package com.epam.newsmanagement.config;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -41,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable();
   }
 
+  @Override
   public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/register**", "/registerAction**");
   }

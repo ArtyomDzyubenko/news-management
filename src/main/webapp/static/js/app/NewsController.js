@@ -3,13 +3,18 @@
 angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', function($scope, NewsService) {
     var self = this;
 
-    self.news={id:null, title:'', date:'', brief:'', content:'', selected:false};
+    self.news={id:null, title:'', date:getCurrentDate(), dateString:'', brief:'', content:'', selected:false};
     self.newsList=[];
 
     self.submit = submit;
     self.edit = edit;
     self.reset = reset;
     self.removeNewsList = removeNewsList;
+
+    function getCurrentDate() {
+        var date = new Date();
+        return date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay();
+    }
  
     fetchAllNews();
  
@@ -67,7 +72,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
  
     function removeNewsList(){
-        var selectedIds = new Array();
+        var selectedIds = [];
 
         angular.forEach(self.newsList, function (news) {
             if (news.selected) {
@@ -87,7 +92,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
 
     function reset(){
-        self.news={id:null, title:'', date:'', brief:'', content:'', selected:false};
+        self.news={id:null, title:'', date:getCurrentDate(), dateString:'', brief:'', content:'', selected:false};
         $scope.newsForm.$setPristine();
     }
 }]);

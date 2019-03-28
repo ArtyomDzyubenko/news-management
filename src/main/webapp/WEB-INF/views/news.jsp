@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <!DOCTYPE html>
 <head>
     <title><spring:message code="app.title"/></title>
@@ -35,7 +37,7 @@
                     <spring:message code="app.news.title"/>
                 </td>
                 <td>
-                    <input type="text" name="title" ng-model="newsCtrl.news.title" size="98" required/>
+                    <input type="text" name="title" ng-model="newsCtrl.news.title" size="98" min="3" max="100" required/>
                     <span ng-show="newsForm.title.$error.required" class="msg-val"><spring:message code="app.news.validation.title"/></span>
                 </td>
             </tr>
@@ -45,8 +47,8 @@
                     <spring:message code="app.news.date"/>
                 </td>
                 <td>
-                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="98" required/>
-                    <span ng-show="newsForm.date.$error.required" class="msg-val">Date is required.</span>
+                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="10" pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" placeholder="2000-12-31" required/>
+                    <span ng-show="newsForm.date.$error.required" class="msg-val"><spring:message code="app.news.validation.date"/></span>
                 </td>
             </tr>
 
@@ -55,7 +57,7 @@
                     <spring:message code="app.news.brief"/>
                 </td>
                 <td>
-                    <textarea name="brief" ng-model="newsCtrl.news.brief" rows="4" cols="100" required></textarea>
+                    <textarea name="brief" ng-model="newsCtrl.news.brief" rows="4" cols="100" minlength="3" maxlength="500" required></textarea>
                     <span ng-show="newsForm.brief.$error.required" class="msg-val"><spring:message code="app.news.validation.brief"/></span>
                 </td>
             </tr>
@@ -65,7 +67,7 @@
                     <spring:message code="app.news.content"/>
                 </td>
                 <td>
-                    <textarea name="content" ng-model="newsCtrl.news.content" rows="10" cols="100" required></textarea>
+                    <textarea name="content" ng-model="newsCtrl.news.content" rows="10" cols="100" minlength="3" maxlength="2048" required></textarea>
                     <span ng-show="newsForm.content.$error.required" class="msg-val"><spring:message code="app.news.validation.content"/></span>
                 </td>
             </tr>

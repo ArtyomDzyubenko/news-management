@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
-<html>
 <head>
     <title><spring:message code="app.title"/></title>
 </head>
 <body>
     <div>
-        <h1><spring:message code="app.title"/></h1>
+        <h1><spring:message code="app.login.form.name"/></h1>
     </div>
 
 	<form action='<spring:url value="/loginAction"/>' name="loginForm" method="post">
@@ -16,13 +15,13 @@
           <tr>
             <td><spring:message code="app.login.username"/></td>
             <td>
-                <input type="text" name="username" required/>
+                <input type="text" name="username" min="3" max="20" required/>
             </td>
           </tr>
           <tr>
             <td><spring:message code="app.login.password"/></td>
             <td>
-                <input type="password" name="password" required/>
+                <input type="password" name="password" min="8" max="20" required/>
             </td>
           </tr>
           <tr>
@@ -31,7 +30,7 @@
         </table>
   </form>
     <div>
-        <a href="${pageContext.request.contextPath}/register">Registration</a>
+        <a href="<spring:url value="/register"/>"><spring:message code="app.register.form.name"/></a>
     </div>
   <br/>
 </body>
