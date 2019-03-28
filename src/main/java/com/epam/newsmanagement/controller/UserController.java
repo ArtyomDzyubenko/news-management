@@ -3,15 +3,17 @@ package com.epam.newsmanagement.controller;
 import com.epam.newsmanagement.dto.UserDTO;
 import com.epam.newsmanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import javax.validation.Valid;
 
 @Controller
+@ControllerAdvice
 public class UserController {
 
     @Autowired
@@ -26,13 +28,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registerAction", method = RequestMethod.POST)
-    public ResponseEntity<Void> addUser(@RequestBody UserDTO user) {
-        boolean success = userService.saveUser(user);
+    public String addUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "registration";
+        }
 
-        if (!success) {
+        return "login";
+
+        //boolean success = userService.saveUser(user);
+
+        /*if (!success) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);*/
     }
 }
