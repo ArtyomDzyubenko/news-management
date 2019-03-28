@@ -30,7 +30,7 @@
         </table>
   </form>
     <div>
-        <a href="${pageContext.request.contextPath}/register"><spring:message code="app.register.form.name"/></a>
+        <a href="<spring:url value="/register"/>"><spring:message code="app.register.form.name"/></a>
     </div>
   <br/>
 </body>

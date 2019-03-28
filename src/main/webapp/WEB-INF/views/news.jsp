@@ -45,8 +45,8 @@
                     <spring:message code="app.news.date"/>
                 </td>
                 <td>
-                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="98" required/>
-                    <span ng-show="newsForm.date.$error.required" class="msg-val">Date is required.</span>
+                    <input type="date" name="date" ng-model="newsCtrl.news.date" required/>
+                    <span ng-show="newsForm.date.$error.required" class="msg-val"><spring:message code="app.news.validation.date"/></span>
                 </td>
             </tr>
 

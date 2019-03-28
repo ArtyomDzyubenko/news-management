@@ -67,7 +67,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
  
     function removeNewsList(){
-        var selectedIds = new Array();
+        var selectedIds = [];
 
         angular.forEach(self.newsList, function (news) {
             if (news.selected) {
@@ -87,7 +87,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
 
     function reset(){
-        self.news={id:null, title:'', date:'', brief:'', content:'', selected:false};
+        self.news={id:null, title:'', date:new Date(), brief:'', content:'', selected:false};
         $scope.newsForm.$setPristine();
     }
 }]);

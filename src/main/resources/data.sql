@@ -1,11 +1,11 @@
 insert into NEWS (NEWS_TITLE, NEWS_CREATE_DATE, NEWS_BRIEF, NEWS_CONTENT)
-values ('News number ONE title', '2012-09-17 18:47:52', 'News number ONE brief', 'News number ONE content');
+values ('News number ONE title', TO_DATE('2012-09-17', 'yyyy-mm-dd'), 'News number ONE brief', 'News number ONE content');
 
 insert into NEWS (NEWS_TITLE, NEWS_CREATE_DATE, NEWS_BRIEF, NEWS_CONTENT)
-values ('News number TWO title', '2012-09-17 18:47:52', 'News number TWO brief', 'News number TWO content');
+values ('News number TWO title', TO_DATE('2012-09-17', 'yyyy-mm-dd'), 'News number TWO brief', 'News number TWO content');
 
 insert into NEWS (NEWS_TITLE, NEWS_CREATE_DATE, NEWS_BRIEF, NEWS_CONTENT)
-values ('News number THREE title', '2012-09-17 18:47:52', 'News number THREE brief', 'News number THREE content');
+values ('News number THREE title', TO_DATE('2012-09-17', 'yyyy-mm-dd'), 'News number THREE brief', 'News number THREE content');
 
 -----------------------------------------------------
 
@@ -20,3 +20,5 @@ values('admin', 'ROLE_ADMIN');
 
 insert into AUTHORITY(USERNAME, AUTHORITY)
 values('user', 'ROLE_USER');
+
+select * from NEWS;

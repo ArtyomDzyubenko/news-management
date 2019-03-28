@@ -1,24 +1,26 @@
 package com.epam.newsmanagement.dto;
 
+import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@Component
 public class UserDTO {
 
-    @NotNull(message = "{app.error.empty}")
-    @NotBlank(message = "{app.error.empty}")
-    @Size(min = 3, max = 20, message = "{app.error.user.username}")
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String username;
 
-    @NotNull(message = "{app.error.empty}")
-    @NotBlank(message = "{app.error.empty}")
-    @Size(min = 8, max = 20, message = "{app.error.user.password}")
+    @NotBlank
+    @Size(min = 8, max = 20)
     private String password;
 
     public UserDTO() {}
+
+    public UserDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;

@@ -1,11 +1,10 @@
 CREATE TABLE NEWS (
     NEWS_ID number(10) not null,
     NEWS_TITLE varchar2(100) not null,
-    NEWS_CREATE_DATE varchar2(20) not null,
+    NEWS_CREATE_DATE date not null,
     NEWS_BRIEF varchar2(500) not null,
     NEWS_CONTENT varchar2(2048) not null
 );
-
 
 ALTER TABLE NEWS
   ADD (
