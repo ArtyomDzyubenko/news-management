@@ -18,19 +18,13 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
-    public UserDTO findUserByUsername(String username) {
-        return UserDTOConverter.Entity2DTO(userDAO.findUserByUsername(username));
-    }
-
-    @Override
     public boolean saveUser(UserDTO user) {
         User exist = userDAO.findUserByUsername(user.getUsername());
-        User entity = UserDTOConverter.DTO2Entity(user);
 
         if (exist != null) {
             return false;
         } else {
-            userDAO.saveUser(entity);
+            userDAO.saveUser(UserDTOConverter.DTO2Entity(user));
 
             return true;
         }

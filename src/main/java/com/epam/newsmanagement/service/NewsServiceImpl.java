@@ -1,11 +1,14 @@
 package com.epam.newsmanagement.service;
 
 import com.epam.newsmanagement.dao.NewsDAO;
+import com.epam.newsmanagement.dao.UserDAO;
 import com.epam.newsmanagement.dto.NewsDTO;
 import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
 import com.epam.newsmanagement.entity.News;
+import com.epam.newsmanagement.entity.User;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -20,12 +23,29 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsDAO newsDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public List<NewsDTO> findAllNews() {
-        List<News> newsList = newsDAO.findAllNews();
+        String userName = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        User user = userDAO.findUserByUsername(userName);
+
+        List<News> newsList;
+
+        if (user.getAuthorities().getAuthority().contains("ADMIN")) {
+            newsList = newsDAO.findAllNews();
+        } else {
+            newsList = newsDAO.findUserNews(user.getUsername());
+        }
 
         if (newsList == null) {
             log.error("Null in findAllNews()");
+
             return new ArrayList<>();
         }
 
@@ -38,6 +58,7 @@ public class NewsServiceImpl implements NewsService {
     public boolean saveNews(NewsDTO news) {
         if (news == null) {
             log.error("Null in saveNews()");
+
             return false;
         }
 
@@ -55,6 +76,7 @@ public class NewsServiceImpl implements NewsService {
     public NewsDTO findNewsById(Long id) {
         if (id == null) {
             log.error("Null in findNewsById()");
+
             return new NewsDTO();
         }
 
@@ -80,6 +102,7 @@ public class NewsServiceImpl implements NewsService {
     public void deleteNewsList(List<Long> IDsList) {
         if (IDsList == null) {
             log.error("Null in deleteNewsList()");
+
             return;
         }
 

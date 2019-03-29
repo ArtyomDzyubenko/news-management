@@ -2,8 +2,6 @@ package com.epam.newsmanagement.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -20,8 +18,8 @@ public class User implements Serializable {
     @Column(name = "ENABLED")
     private Boolean enabled;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Authority> authorities = new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Authority authority = new Authority();
 
     public String getUsername() {
         return username;
@@ -35,8 +33,8 @@ public class User implements Serializable {
         return enabled;
     }
 
-    public Set<Authority> getAuthorities() {
-        return authorities;
+    public Authority getAuthorities() {
+        return authority;
     }
 
     public void setUsername(String username) {
@@ -51,7 +49,7 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public void setAuthorities(Authority authority) {
+        this.authority = authority;
     }
 }

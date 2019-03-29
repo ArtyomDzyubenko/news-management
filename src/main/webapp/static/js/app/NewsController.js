@@ -3,13 +3,18 @@
 angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', function($scope, NewsService) {
     var self = this;
 
-    self.news={id:null, title:'', date:'', dateString:'', brief:'', content:'', selected:false};
+    self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:'', selected:false};
     self.newsList=[];
 
     self.submit = submit;
     self.edit = edit;
     self.reset = reset;
     self.removeNewsList = removeNewsList;
+
+    function getCurrentDate() {
+        var date = new Date();
+        return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+    }
  
     fetchAllNews();
  
@@ -19,7 +24,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
             function(d) {
                 self.newsList = d;
             },
-            function(errResponse){
+            function(){
                 console.error('Error while fetching News list');
             }
         );
@@ -29,7 +34,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
         NewsService.createNews(news)
             .then(
             fetchAllNews,
-            function(errResponse){
+            function(){
                 console.error('Error while creating News');
             }
         );
@@ -39,7 +44,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
         NewsService.updateNews(news, id)
             .then(
             fetchAllNews,
-            function(errResponse){
+            function(){
                 console.error('Error while updating News');
             }
         );
@@ -80,14 +85,14 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
         NewsService.deleteNewsList(selectedIds)
             .then(
             fetchAllNews,
-            function(errResponse){
+            function(){
                 console.error('Error while deleting News list');
             }
         );
     }
 
     function reset(){
-        self.news={id:null, title:'', date:'', dateString:'', brief:'', content:'', selected:false};
+        self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:'', selected:false};
         $scope.newsForm.$setPristine();
     }
 }]);

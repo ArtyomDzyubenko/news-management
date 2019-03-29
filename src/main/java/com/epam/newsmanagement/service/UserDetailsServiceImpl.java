@@ -1,6 +1,5 @@
 package com.epam.newsmanagement.service;
 
-import com.epam.newsmanagement.entity.Authority;
 import com.epam.newsmanagement.entity.User;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +26,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) {
       User user = userDAO.findUserByUsername(username);
 
-      Set<GrantedAuthority> authorities = new HashSet<>();
+      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getAuthorities().getAuthority());
 
-      for (Authority authority: user.getAuthorities()) {
-          authorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
-      }
+      Set<GrantedAuthority> authorities = new HashSet<>();
+      authorities.add(grantedAuthority);
 
       return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
   }

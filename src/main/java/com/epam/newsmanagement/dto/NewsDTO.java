@@ -1,14 +1,8 @@
 package com.epam.newsmanagement.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.sql.Date;
-import java.time.LocalDate;
 
 public class NewsDTO {
 
@@ -18,13 +12,9 @@ public class NewsDTO {
     @Size(min = 3, max = 100)
     private String title;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
-
-    private String dateString;
-
-    /*@NotBlank
-    private String date;*/
+    @NotBlank
+    @Pattern(regexp = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")
+    private String date;
 
     @NotBlank
     @Size(min = 3, max = 500)
@@ -42,17 +32,9 @@ public class NewsDTO {
         return title;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
-
-    public String getDateString() {
-        return dateString;
-    }
-
-    /* public String getDate() {
-        return date;
-    }*/
 
     public String getBrief() {
         return brief;
@@ -70,14 +52,9 @@ public class NewsDTO {
         this.title = title;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
-        this.dateString = date.getYear() + "/" + date.getMonth() + "/" + date.getDayOfMonth();
     }
-
-    /* public void setDate(String date) {
-        this.date = date;
-    }*/
 
     public void setBrief(String brief) {
         this.brief = brief;

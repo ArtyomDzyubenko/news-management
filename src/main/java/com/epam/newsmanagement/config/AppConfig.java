@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -31,22 +30,7 @@ public class AppConfig {
   public LocalSessionFactoryBean sessionFactory() {
       LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
-      Properties props = new Properties();
-
-      props.put(DRIVER, environment.getProperty("oracle.driver"));
-      props.put(URL, environment.getProperty("oracle.jdbcUrl"));
-      props.put(USER, environment.getProperty("oracle.username"));
-      props.put(PASS, environment.getProperty("oracle.password"));
-
-      props.put(SHOW_SQL, environment.getProperty("hibernate.show_sql"));
-      props.put(HBM2DDL_AUTO, environment.getProperty("hibernate.hbm2ddl.auto"));
-      props.put(DIALECT, environment.getProperty("hibernate.dialect"));
-
-      props.put(C3P0_MIN_SIZE, environment.getProperty("hibernate.c3p0.min_size"));
-      props.put(C3P0_MAX_SIZE, environment.getProperty("hibernate.c3p0.max_size"));
-      props.put(C3P0_ACQUIRE_INCREMENT, environment.getProperty("hibernate.c3p0.acquire_increment"));
-      props.put(C3P0_TIMEOUT, environment.getProperty("hibernate.c3p0.timeout"));
-      props.put(C3P0_MAX_STATEMENTS, environment.getProperty("hibernate.c3p0.max_statements"));
+      Properties props = setProperties();
 
       factoryBean.setHibernateProperties(props);
       factoryBean.setAnnotatedClasses(User.class, Authority.class, News.class);
@@ -62,8 +46,23 @@ public class AppConfig {
       return transactionManager;
   }
 
-  @Bean
-  public HibernateTemplate hibernateTemplate() {
-      return new HibernateTemplate(sessionFactory().getObject());
+  private Properties setProperties() {
+      Properties props = new Properties();
+      props.put(DRIVER, environment.getProperty("oracle.driver"));
+      props.put(URL, environment.getProperty("oracle.jdbcUrl"));
+      props.put(USER, environment.getProperty("oracle.username"));
+      props.put(PASS, environment.getProperty("oracle.password"));
+
+      props.put(SHOW_SQL, environment.getProperty("hibernate.show_sql"));
+      props.put(HBM2DDL_AUTO, environment.getProperty("hibernate.hbm2ddl.auto"));
+      props.put(DIALECT, environment.getProperty("hibernate.dialect"));
+
+      props.put(C3P0_MIN_SIZE, environment.getProperty("hibernate.c3p0.min_size"));
+      props.put(C3P0_MAX_SIZE, environment.getProperty("hibernate.c3p0.max_size"));
+      props.put(C3P0_ACQUIRE_INCREMENT, environment.getProperty("hibernate.c3p0.acquire_increment"));
+      props.put(C3P0_TIMEOUT, environment.getProperty("hibernate.c3p0.timeout"));
+      props.put(C3P0_MAX_STATEMENTS, environment.getProperty("hibernate.c3p0.max_statements"));
+
+      return props;
   }
 }

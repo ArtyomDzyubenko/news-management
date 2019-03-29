@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
+<html>
 <head>
     <title><spring:message code="app.title"/></title>
 </head>
@@ -16,7 +18,7 @@
     </div>
 
     <div>
-        <h2><spring:message code="app.welcome"/>${who}</h2>
+        <h2><spring:message code="app.welcome"/>${userName}</h2>
 
         <form action='<spring:url value="/logout"/>' method="post">
             <input value="<spring:message code="app.news.button.logout"/>" type="submit">
@@ -45,7 +47,7 @@
                     <spring:message code="app.news.date"/>
                 </td>
                 <td>
-                    <input type="date" name="date" ng-model="newsCtrl.news.date" required/>
+                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="10" pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" placeholder="2000-12-31" required/>
                     <span ng-show="newsForm.date.$error.required" class="msg-val"><spring:message code="app.news.validation.date"/></span>
                 </td>
             </tr>
@@ -91,9 +93,9 @@
         <tr ng-repeat="row in newsCtrl.newsList">
             <td><span ng-bind="row.id"></span></td>
             <td><span ng-bind="row.title"></span></td>
-            <td><span ng-bind="row.dateString"></span></td>
-            <td><span ng-bind="row.brief"></span></td>
-            <td><span ng-bind="row.content"></span></td>
+            <td><span ng-bind="row.date"></span></td>
+            <td class="angular-with-newlines"><span ng-bind="row.brief"></span></td>
+            <td class="angular-with-newlines"><span ng-bind="row.content"></span></td>
             <td><input name="delete" type="checkbox" ng-model="row.selected"/></td>
             <td>
                 <input type="button" ng-click="newsCtrl.edit(row.id)" value="<spring:message code="app.news.button.edit"/>"/>
@@ -107,5 +109,6 @@
 <script src="${pageContext.request.contextPath}/static/js/app/NewsController.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/style.css"/>
 </body>
-</html>  
+</html>
+
   

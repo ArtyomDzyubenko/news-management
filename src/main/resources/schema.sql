@@ -3,8 +3,11 @@ CREATE TABLE NEWS (
     NEWS_TITLE varchar2(100) not null,
     NEWS_CREATE_DATE date not null,
     NEWS_BRIEF varchar2(500) not null,
-    NEWS_CONTENT varchar2(2048) not null
+    NEWS_CONTENT varchar2(2048) not null,
+    NEWS_USERNAME varchar2(100) not null
 );
+
+DELETE FROM NEWS;
 
 ALTER TABLE NEWS
   ADD (

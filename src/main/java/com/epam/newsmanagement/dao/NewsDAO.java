@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface NewsDAO {
     List<News> findAllNews();
+    List<News> findUserNews(String username);
     News findNewsById(Long id);
     void saveNews(News news);
     void updateNews(News news);

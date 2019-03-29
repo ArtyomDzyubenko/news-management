@@ -3,7 +3,6 @@ package com.epam.newsmanagement.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "NEWS")
@@ -28,6 +27,9 @@ public class News implements Serializable {
     @Column(name = "NEWS_CONTENT")
     private String content;
 
+    @Column(name = "NEWS_USERNAME")
+    private String username;
+
     public Long getId() {
         return id;
     }
@@ -48,6 +50,10 @@ public class News implements Serializable {
         return content;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,5 +72,9 @@ public class News implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

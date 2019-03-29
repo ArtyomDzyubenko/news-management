@@ -28,12 +28,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registerAction", method = RequestMethod.POST)
-    public String addUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result) {
+    public String addUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "registration";
         }
 
-        userService.saveUser(userDTO);
+        boolean success = userService.saveUser(userDTO);
+
+        if (!success) {
+            Boolean userExist = true;
+            model.addAttribute("userExist", userExist);
+
+            return "registration";
+        }
 
         return "login";
     }

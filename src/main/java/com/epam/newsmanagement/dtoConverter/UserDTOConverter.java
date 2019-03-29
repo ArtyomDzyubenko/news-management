@@ -5,8 +5,6 @@ import com.epam.newsmanagement.entity.Authority;
 import com.epam.newsmanagement.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import java.util.HashSet;
-import java.util.Set;
 
 public class UserDTOConverter {
 
@@ -27,12 +25,10 @@ public class UserDTOConverter {
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
         entity.setEnabled(true);
 
-        Set<Authority> authoritySet = new HashSet<>();
         Authority authority = new Authority();
         authority.setAuthority("ROLE_USER");
         authority.setUser(entity);
-        authoritySet.add(authority);
-        entity.setAuthorities(authoritySet);
+        entity.setAuthorities(authority);
 
         return entity;
     }

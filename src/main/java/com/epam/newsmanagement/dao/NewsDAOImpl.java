@@ -18,8 +18,21 @@ public class NewsDAOImpl implements NewsDAO {
         String hql = "FROM News";
 
         List<News> newsList = (List<News>) sessionFactory
-                .openSession()
+                .getCurrentSession()
                 .createQuery(hql)
+                .list();
+
+        return newsList;
+    }
+
+    @Override
+    public List<News> findUserNews(String username) {
+        String hql = "FROM News as nws WHERE nws.username = ?1";
+
+        List<News> newsList = (List<News>) sessionFactory
+                .getCurrentSession()
+                .createQuery(hql)
+                .setParameter(1, username)
                 .list();
 
         return newsList;
