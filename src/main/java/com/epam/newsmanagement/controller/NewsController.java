@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/api")
 public class NewsController {
 
     @Autowired
@@ -25,7 +26,8 @@ public class NewsController {
         return new ResponseEntity<>(newsList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
+    //@RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/news/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<NewsDTO> getNewsById(@PathVariable("id") Long id) {
         NewsDTO news = newsService.findNewsById(id);
 
@@ -51,8 +53,7 @@ public class NewsController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-
-    @RequestMapping(value = "/news/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/news", method = RequestMethod.PUT)
     public ResponseEntity<NewsDTO> updateNews(@RequestBody NewsDTO news) {
         newsService.updateNews(news);
 

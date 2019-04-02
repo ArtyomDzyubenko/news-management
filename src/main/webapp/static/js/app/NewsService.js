@@ -2,7 +2,7 @@
 
 angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8081/news-management/news/';
+    var REST_SERVICE_URI = 'http://localhost:8081/news-management/api/news/';
 
     var factory = {
         fetchAllNews: fetchAllNews,
@@ -41,18 +41,17 @@ angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $
         return deferred.promise;
     }
 
-
-    function updateNews(news, id) {
+    function updateNews(news) {
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI + id, news)
+        $http.put(REST_SERVICE_URI, news)
             .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                deferred.reject(errResponse);
-            }
-        );
+                function (response) {
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
         return deferred.promise;
     }
 

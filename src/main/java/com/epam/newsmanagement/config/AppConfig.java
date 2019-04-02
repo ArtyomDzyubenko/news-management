@@ -7,7 +7,6 @@ import com.epam.newsmanagement.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -19,8 +18,7 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.epam.newsmanagement.dao"),
-                          @ComponentScan("com.epam.newsmanagement.service") })
+@ComponentScan("com.epam.newsmanagement")
 public class AppConfig {
 
   @Autowired

@@ -1,47 +1,22 @@
 package com.epam.newsmanagement.config;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger
-@EnableWebMvc
+@EnableSwagger2
 public class SwaggerConfig {
-
-    @Autowired
-    private SpringSwaggerConfig springSwaggerConfig;
-
-    /*@Bean
+    @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/news/.*"))
-                .build()
-                .apiInfo(apiInfo());
-    }*/
-
-    @Bean
-    public SwaggerSpringMvcPlugin customImplementation(){
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-                .apiInfo(apiInfo())
-                .includePatterns("/.*");
-    }
-
-
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "my API",
-                "API for my app",
-                "",
-                "contact@localhost.com",
-                "License type",
-                "something like a License URL");
+                .apis(RequestHandlerSelectors.basePackage("com.epam.newsmanagement"))
+                .paths(PathSelectors.ant("/api/*"))
+                .build();
     }
 }

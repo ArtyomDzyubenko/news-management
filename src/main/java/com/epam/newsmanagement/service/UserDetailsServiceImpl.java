@@ -13,7 +13,6 @@ import com.epam.newsmanagement.dao.UserDAO;
 import java.util.HashSet;
 import java.util.Set;
 
-@Log4j
 @Service("userDetailsService")
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
