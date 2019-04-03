@@ -28,7 +28,7 @@ public class UserDTOConverter {
         Authority authority = new Authority();
         authority.setAuthority("ROLE_USER");
         authority.setUser(entity);
-        entity.setAuthorities(authority);
+        entity.setAuthority(authority);
 
         return entity;
     }

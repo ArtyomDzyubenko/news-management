@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
       User user = userDAO.findUserByUsername(username);
 
-      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getAuthorities().getAuthority());
+      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getAuthority().getAuthority());
 
       Set<GrantedAuthority> authorities = new HashSet<>();
       authorities.add(grantedAuthority);

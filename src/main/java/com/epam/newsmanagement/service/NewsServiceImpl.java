@@ -37,7 +37,7 @@ public class NewsServiceImpl implements NewsService {
 
         List<News> newsList;
 
-        if (user.getAuthorities().getAuthority().contains("ADMIN")) {
+        if (user.getAuthority().getAuthority().contains("ADMIN")) {
             newsList = newsDAO.findAllNews();
         } else {
             newsList = newsDAO.findUserNews(user.getUsername());
