@@ -9,25 +9,25 @@ import java.sql.Date;
 public class News implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /*@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "newsSequence")
     @SequenceGenerator(name = "newsSequence", sequenceName = "NEWS_SEQUENCE")
-    @Column(name = "NEWS_ID")*/
+    @Column(name = "NEWS_ID")
     private Long id;
 
-    /*@Column(name = "NEWS_TITLE")*/
+    @Column(name = "NEWS_TITLE")
     private String title;
 
-    /*@Column(name = "NEWS_CREATE_DATE")*/
+    @Column(name = "NEWS_CREATE_DATE")
     private Date date;
 
-   /* @Column(name = "NEWS_BRIEF")*/
+    @Column(name = "NEWS_BRIEF")
     private String brief;
 
-    /*@Column(name = "NEWS_CONTENT")*/
+    @Column(name = "NEWS_CONTENT")
     private String content;
 
-    /*@Column(name = "NEWS_USERNAME")*/
+    @Column(name = "NEWS_USERNAME")
     private String username;
 
     public Long getId() {
