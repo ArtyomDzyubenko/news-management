@@ -26,7 +26,6 @@ public class NewsController {
         return new ResponseEntity<>(newsList, HttpStatus.OK);
     }
 
-    //@RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
     @RequestMapping(value = "/news/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<NewsDTO> getNewsById(@PathVariable("id") Long id) {
         NewsDTO news = newsService.findNewsById(id);
