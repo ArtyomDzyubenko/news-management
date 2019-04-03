@@ -3,17 +3,17 @@ package com.epam.newsmanagement.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "AUTHORITY")
+/*@Entity
+@Table(name = "AUTHORITY")*/
 public class Authority implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "AUTHORITY")
+    /*@Id
+    @Column(name = "AUTHORITY")*/
     private String authority;
 
-    @ManyToOne
-    @JoinColumn(name = "USERNAME")
+    /*@ManyToOne
+    @JoinColumn(name = "USERNAME")*/
     private User user;
 
     public String getAuthority() {
