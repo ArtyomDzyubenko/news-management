@@ -8,11 +8,11 @@ import java.io.Serializable;
 public class Authority implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
     @Column(name = "AUTHORITY")
     private String authority;
 
-    @ManyToOne
+    @Id
+    @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
 

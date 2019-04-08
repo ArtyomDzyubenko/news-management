@@ -14,6 +14,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.epam.newsmanagement" })
 public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp().prefix("/WEB-INF/views/").suffix(".jsp");

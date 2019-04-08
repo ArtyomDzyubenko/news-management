@@ -2,6 +2,7 @@ package com.epam.newsmanagement.controller;
 
 import com.epam.newsmanagement.dto.UserDTO;
 import com.epam.newsmanagement.service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
+@Log4j
 @Controller
 @ControllerAdvice
 public class UserController {
+    private final static String REGISTRATION_URL = "registration";
 
     @Autowired
     private UserService userService;
@@ -24,13 +27,13 @@ public class UserController {
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new UserDTO());
 
-        return "registration";
+        return REGISTRATION_URL;
     }
 
     @RequestMapping(value = "/registerAction", method = RequestMethod.POST)
     public String addUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "registration";
+            return REGISTRATION_URL;
         }
 
         boolean success = userService.saveUser(userDTO);
@@ -39,7 +42,7 @@ public class UserController {
             Boolean userExist = true;
             model.addAttribute("userExist", userExist);
 
-            return "registration";
+            return REGISTRATION_URL;
         }
 
         return "login";

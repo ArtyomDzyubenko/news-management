@@ -10,18 +10,13 @@ values ('News number THREE title', TO_DATE('2012-09-17', 'yyyy-mm-dd'), 'News nu
 -----------------------------------------------------
 
 insert into USERS(USERNAME, PASSWORD, ENABLED)
-values('admin','$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu', 1);
-
-insert into USERS(USERNAME, PASSWORD, ENABLED)
-values('user','$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu', 1);
+values('admin','$2a$10$j0brNJfR.ft5dsjSL/42zuKWEkmwGold3RYsUy0lWjzdyR5/yjzlG', 1);
 
 insert into AUTHORITY(USERNAME, AUTHORITY)
 values('admin', 'ROLE_ADMIN');
 
-insert into AUTHORITY(USERNAME, AUTHORITY)
-values('user', 'ROLE_USER');
+delete FROM USERS where USERNAME like 'admin';
+delete FROM AUTHORITY where USERNAME like 'admin';
 
-select * from USERS;
-
-select * from AUTHORITY;
-
+select * from  USERS;
+select * from  AUTHORITY;

@@ -3,13 +3,10 @@ package com.epam.newsmanagement.dtoConverter;
 import com.epam.newsmanagement.dto.UserDTO;
 import com.epam.newsmanagement.entity.Authority;
 import com.epam.newsmanagement.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserDTOConverter {
-
-    @Autowired
-    private static BCryptPasswordEncoder passwordEncoder;
+    private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public static UserDTO Entity2DTO(User entity) {
         UserDTO dto = new UserDTO();
