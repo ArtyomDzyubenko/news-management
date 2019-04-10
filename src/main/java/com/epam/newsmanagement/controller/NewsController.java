@@ -3,7 +3,6 @@ package com.epam.newsmanagement.controller;
 import com.epam.newsmanagement.dto.NewsDTO;
 import com.epam.newsmanagement.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,7 +25,7 @@ public class NewsController {
         return new ResponseEntity<>(newsList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/news/id/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<NewsDTO> getNewsById(@PathVariable("id") Long id) {
         NewsDTO news = newsService.findNewsById(id);
 
@@ -46,10 +45,7 @@ public class NewsController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/news/{id}").buildAndExpand(news.getId()).toUri());
-
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.PUT)

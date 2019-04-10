@@ -68,12 +68,6 @@ public class NewsDAOImpl implements NewsDAO {
         IDsList.forEach(item -> session.createQuery(hql)
                 .setParameter(1, item)
                 .executeUpdate());
-
-        /*for (Long item: IDsList) {
-            session.createQuery(hql)
-                    .setParameter(1, item)
-                    .executeUpdate();
-        }*/
     }
 
     @Override

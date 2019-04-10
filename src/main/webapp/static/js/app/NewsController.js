@@ -3,7 +3,7 @@
 angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', function($scope, NewsService) {
     var self = this;
 
-    self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:'', selected:false};
+    self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:''};
     self.newsList=[];
 
     self.submit = submit;
@@ -93,7 +93,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
 
     function reset(){
-        self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:'', selected:false};
+        self.news={id:null, title:'', date:getCurrentDate(), brief:'', content:''};
         $scope.newsForm.$setPristine();
     }
 }]);
