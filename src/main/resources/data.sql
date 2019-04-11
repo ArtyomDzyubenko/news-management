@@ -25,3 +25,7 @@ select * from USERS;
 
 select * from AUTHORITY;
 
+select * from NEWS;
+
+alter table NEWS add NEWS_USERNAME
+
