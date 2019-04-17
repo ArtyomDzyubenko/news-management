@@ -20,3 +20,20 @@ delete FROM AUTHORITY where USERNAME like 'admin';
 
 select * from  USERS;
 select * from  AUTHORITY;
+
+SELECT AUTHORITY, 'Roles' from AUTHORITY WHERE username='admin';
+
+insert into USERS(USERNAME, PASSWORD, ENABLED)
+values('admin1','e00cf25ad42683b3df678c61f42c6bda', 1);
+
+insert into AUTHORITY(USERNAME, AUTHORITY)
+values('admin1', 'ROLE_ADMIN');
+
+insert into USERS(USERNAME, PASSWORD, ENABLED)
+values('user1','24c9e15e52afc47c225b757e7bee1f9d', 1);
+
+insert into USERS(USERNAME, PASSWORD, ENABLED)
+values('user2','7e58d63b60197ceb55a1c487989a3720', 1);
+
+insert into AUTHORITY(USERNAME, AUTHORITY)
+values('user2', 'ROLE_USER');
