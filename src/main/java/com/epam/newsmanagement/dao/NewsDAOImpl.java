@@ -40,7 +40,7 @@ public class NewsDAOImpl implements NewsDAO {
 
     @Override
     public News findNewsById(Long id) {
-        return sessionFactory.openSession().get(News.class, id);
+        return sessionFactory.getCurrentSession().get(News.class, id);
     }
 
     @Override
