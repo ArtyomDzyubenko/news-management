@@ -53,6 +53,8 @@ public class NewsDAOImpl implements NewsDAO {
 
     @Override
     public News findNewsById(Long id) {
+        String hql = "FROM News as nws WHERE nws.id = ?1";
+
         News returned = new News();
 
         if (id == null) {

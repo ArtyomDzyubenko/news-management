@@ -23,11 +23,11 @@ public class AppTestConfig {
 
         Properties ps = new Properties();
         ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-        ps.put("hibernate.hbm2ddl.auto", "create-drop");
+        ps.put("hibernate.hbm2ddl.auto", "create");
 
         factoryBean.setDataSource(dataSource());
         factoryBean.setHibernateProperties(ps);
-        factoryBean.setAnnotatedClasses(User.class, Authority.class, News.class);
+        factoryBean.setAnnotatedClasses(News.class);
 
         return factoryBean;
     }

@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {
-        "com.epam.newsmanagement.dao",
-        "com.epam.newsmanagement.service",
-        "com.epam.newsmanagement.entity"
+        "com.epam.newsmanagement.dao"
 })
 public class TestConfig {
 

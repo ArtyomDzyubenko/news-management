@@ -46,9 +46,9 @@ public class NewsDAOImplTest {
     public void testFindNewsById() {
         newsDAO.saveNews(getTestNews());
 
-        News news = newsDAO.findNewsById(1L);
+        News news = newsDAO.findNewsById(2L);
 
-        Assert.assertEquals(1L, news.getId().longValue());
+        Assert.assertEquals("title", news.getTitle());
     }
 
     @Test
@@ -56,17 +56,20 @@ public class NewsDAOImplTest {
         newsDAO.saveNews(getTestNews());
 
         News updated = new News();
-        updated.setId(1L);
-        updated.setTitle("new title");
+        updated.setId(4L);
+        updated.setTitle("updated title");
         updated.setDate(Date.valueOf("2012-12-31"));
-        updated.setBrief("new brief");
-        updated.setContent("new content");
+        updated.setBrief("updated brief");
+        updated.setContent("updated content");
+        updated.setUsername("username");
 
         newsDAO.updateNews(updated);
 
         List<News> newsList = newsDAO.findAllNews();
 
-        Assert.assertEquals("new title", newsList.get(0).getTitle());
+        Assert.assertEquals("updated title", newsList.get(0).getTitle());
+        Assert.assertEquals("updated brief", newsList.get(0).getBrief());
+        Assert.assertEquals("updated content", newsList.get(0).getContent());
     }
 
     @Test
@@ -85,7 +88,6 @@ public class NewsDAOImplTest {
 
     private News getTestNews(){
         News news = new News();
-        news.setId(1L);
         news.setUsername("username");
         news.setTitle("title");
         news.setDate(Date.valueOf("2001-12-31"));
