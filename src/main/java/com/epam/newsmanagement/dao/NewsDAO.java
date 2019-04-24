@@ -7,8 +7,8 @@ public interface NewsDAO {
     List<News> findAllNews();
     List<News> findUserNews(String username);
     News findNewsById(Long id);
-    void saveNews(News news);
-    void updateNews(News news);
-    void deleteNewsList(List<Long> IDsList);
+    boolean saveNews(News news);
+    boolean updateNews(News news);
+    boolean deleteNewsList(List<Long> IDsList);
     boolean isNewsExist(String title);
 }
