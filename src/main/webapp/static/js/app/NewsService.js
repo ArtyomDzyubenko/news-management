@@ -2,7 +2,7 @@
 
 angular.module('myApp').factory('NewsService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://10.12.11.68:8081/news-management/api/news/';
+    var REST_SERVICE_URI = 'http://10.12.9.68:8081/news-management/api/news/';
 
     var factory = {
         fetchAllNews: fetchAllNews,
