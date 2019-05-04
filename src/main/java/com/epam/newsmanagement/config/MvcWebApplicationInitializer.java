@@ -3,6 +3,7 @@ package com.epam.newsmanagement.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
   @Override
   protected Class<?>[] getRootConfigClasses() {
       return new Class[] { AppConfig.class, WebSecurityConfig.class, SwaggerConfig.class };

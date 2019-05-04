@@ -47,7 +47,7 @@
                     <spring:message code="app.news.date"/>
                 </td>
                 <td>
-                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="10" pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" placeholder="2000-12-31" required/>
+                    <input type="text" name="date" ng-model="newsCtrl.news.date" size="10" pattern="([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))" placeholder="2000-12-31" required/>
                     <span ng-show="newsForm.date.$error.required" class="msg-val"><spring:message code="app.news.validation.date"/></span>
                 </td>
             </tr>
@@ -94,8 +94,8 @@
             <td><span ng-bind="row.id"></span></td>
             <td><span ng-bind="row.title"></span></td>
             <td><span ng-bind="row.date"></span></td>
-            <td class="angular-with-newlines"><span ng-bind="row.brief"></span></td>
-            <td class="angular-with-newlines"><span ng-bind="row.content"></span></td>
+            <td><div span class="angular-with-newlines"><span ng-bind="row.brief"></span></div></td>
+            <td><div span class="angular-with-newlines"><span class="angular-with-newlines" ng-bind="row.content"></span></div></td>
             <td><input name="delete" type="checkbox" ng-model="row.selected"/></td>
             <td>
                 <input type="button" ng-click="newsCtrl.edit(row.id)" value="<spring:message code="app.news.button.edit"/>"/>

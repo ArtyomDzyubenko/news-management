@@ -37,7 +37,7 @@ public class NewsServiceImpl implements NewsService {
 
         List<News> newsList;
 
-        if (user.getAuthorities().getAuthority().contains("ADMIN")) {
+        if (user.getAuthority().getAuthority().contains("ADMIN")) {
             newsList = newsDAO.findAllNews();
         } else {
             newsList = newsDAO.findUserNews(user.getUsername());
@@ -56,19 +56,21 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public boolean saveNews(NewsDTO news) {
+        boolean success = false;
+
         if (news == null) {
             log.error("Null in saveNews()");
 
-            return false;
+            return success;
         }
 
         News entity = NewsDTOConverter.DTO2Entity(news);
 
         if (newsDAO.isNewsExist(entity.getTitle())) {
-            return false;
+            return success;
         } else {
             newsDAO.saveNews(entity);
-            return true;
+            return !success;
         }
     }
 
@@ -90,6 +92,7 @@ public class NewsServiceImpl implements NewsService {
     public void updateNews(NewsDTO news) {
         if (news == null) {
             log.error("Null in updateNews()");
+
             return;
         }
 

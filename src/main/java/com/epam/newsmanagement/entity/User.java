@@ -33,7 +33,7 @@ public class User implements Serializable {
         return enabled;
     }
 
-    public Authority getAuthorities() {
+    public Authority getAuthority() {
         return authority;
     }
 
@@ -49,7 +49,7 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public void setAuthorities(Authority authority) {
+    public void setAuthority(Authority authority) {
         this.authority = authority;
     }
 }

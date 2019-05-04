@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Log4j
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -18,14 +19,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean saveUser(UserDTO user) {
+        boolean success = false;
+
+        if (user == null) {
+            log.error("Null in saveUser()");
+
+            return success;
+        }
+
         User exist = userDAO.findUserByUsername(user.getUsername());
 
         if (exist != null) {
-            return false;
+            return success;
         } else {
             userDAO.saveUser(UserDTOConverter.DTO2Entity(user));
 
-            return true;
+            return !success;
         }
     }
 }

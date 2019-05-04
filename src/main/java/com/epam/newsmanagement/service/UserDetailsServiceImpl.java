@@ -13,6 +13,7 @@ import com.epam.newsmanagement.dao.UserDAO;
 import java.util.HashSet;
 import java.util.Set;
 
+@Log4j
 @Service("userDetailsService")
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -23,10 +24,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   @Transactional(readOnly = true)
   public UserDetails loadUserByUsername(String username) {
+      if (username == null) {
+          log.error("Null in loadUserByUsername()");
+          Set<GrantedAuthority> authorities = new HashSet<>();
+
+          return new org.springframework.security.core.userdetails.User("", "", authorities);
+      }
+
       User user = userDAO.findUserByUsername(username);
 
-      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getAuthorities().getAuthority());
-
+      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getAuthority().getAuthority());
       Set<GrantedAuthority> authorities = new HashSet<>();
       authorities.add(grantedAuthority);
 
