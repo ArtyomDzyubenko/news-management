@@ -86,30 +86,32 @@ public class NewsServiceImpl implements NewsService {
 
         return NewsDTOConverter.Entity2DTO(entity);
     }
-
-
     @Override
-    public void updateNews(NewsDTO news) {
+    public boolean updateNews(NewsDTO news) {
+        boolean success = true;
+
         if (news == null) {
             log.error("Null in updateNews()");
 
-            return;
+            return !success;
         }
 
         News entity = NewsDTOConverter.DTO2Entity(news);
 
-        newsDAO.updateNews(entity);
+        return newsDAO.updateNews(entity);
     }
 
     @Override
-    public void deleteNewsList(List<Long> IDsList) {
+    public boolean deleteNewsList(List<Long> IDsList) {
+        boolean success = true;
+
         if (IDsList == null) {
             log.error("Null in deleteNewsList()");
 
-            return;
+            return !success;
         }
 
-        newsDAO.deleteNewsList(IDsList);
+        return newsDAO.deleteNewsList(IDsList);
     }
 }
 
