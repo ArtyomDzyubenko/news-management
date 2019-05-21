@@ -22,7 +22,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   private UserDAO userDAO;
 
   @Override
-  @Transactional(readOnly = true)
   public UserDetails loadUserByUsername(String username) {
       if (username == null) {
           log.error("Null in loadUserByUsername()");
