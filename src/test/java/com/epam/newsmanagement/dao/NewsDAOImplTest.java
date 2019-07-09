@@ -76,13 +76,12 @@ public class NewsDAOImplTest {
         newsDAO.saveNews(getTestNews());
 
         News news = getTestNews();
-        news.setId(1L);
 
         newsDAO.deleteNews(news);
 
-        List<News> newsList = newsDAO.findAllNews();
+        News newsDB = newsDAO.findNewsById(1L);
 
-        Assert.assertEquals(0, newsList.size());
+        Assert.assertNull(newsDB.getId());
     }
 
     private News getTestNews(){
