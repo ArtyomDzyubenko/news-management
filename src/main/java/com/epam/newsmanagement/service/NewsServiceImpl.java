@@ -28,7 +28,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<NewsDTO> findAllNews() {
-        String userName = SecurityContextHolder
+        /*String userName = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getName();
@@ -41,7 +41,9 @@ public class NewsServiceImpl implements NewsService {
             newsList = newsDAO.findAllNews();
         } else {
             newsList = newsDAO.findUserNews(user.getUsername());
-        }
+        }*/
+
+        List<News> newsList = newsDAO.findAllNews();
 
         if (newsList == null) {
             log.error("Null in findAllNews()");

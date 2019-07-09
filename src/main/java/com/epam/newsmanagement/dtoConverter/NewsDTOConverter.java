@@ -13,6 +13,7 @@ public class NewsDTOConverter {
         dto.setDate(entity.getDate().toString());
         dto.setBrief(entity.getBrief());
         dto.setContent(entity.getContent());
+        dto.setUsername(entity.getUsername());
 
         return dto;
     }
