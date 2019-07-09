@@ -8,14 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UserDTOConverter {
     private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public static UserDTO Entity2DTO(User entity) {
-        UserDTO dto = new UserDTO();
-        dto.setUsername(entity.getUsername());
-        dto.setPassword(entity.getPassword());
-
-        return dto;
-    }
-
     public static User DTO2Entity(UserDTO dto) {
         User entity = new User();
         entity.setUsername(dto.getUsername());

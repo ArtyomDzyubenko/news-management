@@ -5,7 +5,6 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class NewsDTO {
-
     private Long id;
 
     @NotBlank
@@ -24,7 +23,6 @@ public class NewsDTO {
     @Size(min = 3, max = 2048)
     private String content;
 
-    @Size(min = 3, max = 20)
     private String username;
 
     public Long getId() {
