@@ -73,13 +73,13 @@ public class NewsDAOImplTest {
     }
 
     @Test
-    public void testDeleteNewsList() {
+    public void testDeleteNews() {
         newsDAO.saveNews(getTestNews());
 
-        List<Long> list = new ArrayList<>();
-        list.add(1L);
+        News news = getTestNews();
+        news.setId(1L);
 
-        newsDAO.deleteNewsList(list);
+        newsDAO.deleteNews(news);
 
         List<News> newsList = newsDAO.findAllNews();
 
