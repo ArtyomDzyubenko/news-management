@@ -81,6 +81,10 @@
         </table>
     </form>
 
+    <div>
+        <h3><spring:message code="app.news.newsList"/></h3>
+    </div>
+
     <table>
         <tr>
             <th><spring:message code="app.news.username"/></th>
