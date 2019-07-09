@@ -52,17 +52,17 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
     }
 
     function removeNewsList(){
-        var selectedIds = [];
+        var toDelete = [];
 
         angular.forEach(self.newsList, function (news) {
             if (news.selected) {
-                selectedIds.push(news.id);
+                toDelete.push(news);
             }
         });
 
-        console.log('News list to be deleted', selectedIds);
+        console.log('News list to be deleted', toDelete);
 
-        NewsService.deleteNewsList(selectedIds)
+        NewsService.deleteNewsList(toDelete)
             .then(
             fetchAllNews,
             function(){
