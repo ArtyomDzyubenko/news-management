@@ -1,14 +1,11 @@
 package com.epam.newsmanagement.service;
 
 import com.epam.newsmanagement.dao.NewsDAO;
-import com.epam.newsmanagement.dao.UserDAO;
 import com.epam.newsmanagement.dto.NewsDTO;
 import com.epam.newsmanagement.dtoConverter.NewsDTOConverter;
 import com.epam.newsmanagement.entity.News;
-import com.epam.newsmanagement.entity.User;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
