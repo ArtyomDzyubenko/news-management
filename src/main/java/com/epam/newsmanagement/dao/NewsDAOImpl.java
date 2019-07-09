@@ -1,5 +1,6 @@
 package com.epam.newsmanagement.dao;
 
+import com.epam.newsmanagement.dto.NewsDTO;
 import com.epam.newsmanagement.entity.News;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,27 +22,6 @@ public class NewsDAOImpl implements NewsDAO {
         List<News> newsList = (List<News>) sessionFactory
                 .getCurrentSession()
                 .createQuery(hql)
-                .list();
-
-        if (newsList == null) {
-            return new ArrayList<>();
-        }
-
-        return newsList;
-    }
-
-    @Override
-    public List<News> findUserNews(String username) {
-        if (username == null) {
-            return new ArrayList<>();
-        }
-
-        String hql = "FROM News as nws WHERE nws.username = ?1";
-
-        List<News> newsList = (List<News>) sessionFactory
-                .getCurrentSession()
-                .createQuery(hql)
-                .setParameter(1, username)
                 .list();
 
         if (newsList == null) {
@@ -105,10 +85,10 @@ public class NewsDAOImpl implements NewsDAO {
     }
 
     @Override
-    public boolean deleteNewsList(List<Long> IDsList) {
+    public boolean deleteNews(News news) {
         boolean success = true;
 
-        if (IDsList == null) {
+        if (news == null) {
             return !success;
         }
 
@@ -116,9 +96,7 @@ public class NewsDAOImpl implements NewsDAO {
 
         Session session = sessionFactory.getCurrentSession();
 
-        IDsList.forEach(item -> session.createQuery(hql)
-                .setParameter(1, item)
-                .executeUpdate());
+        session.createQuery(hql).setParameter(1, news.getId()).executeUpdate();
 
         return success;
     }

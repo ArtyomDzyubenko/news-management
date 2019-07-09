@@ -23,26 +23,8 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsDAO newsDAO;
 
-    @Autowired
-    private UserDAO userDAO;
-
     @Override
     public List<NewsDTO> findAllNews() {
-        /*String userName = SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
-
-        User user = userDAO.findUserByUsername(userName);
-
-        List<News> newsList;
-
-        if (user.getAuthority().getAuthority().contains("ADMIN")) {
-            newsList = newsDAO.findAllNews();
-        } else {
-            newsList = newsDAO.findUserNews(user.getUsername());
-        }*/
-
         List<News> newsList = newsDAO.findAllNews();
 
         if (newsList == null) {
@@ -104,16 +86,18 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public boolean deleteNewsList(List<Long> IDsList) {
+    public boolean deleteNews(NewsDTO news) {
         boolean success = true;
 
-        if (IDsList == null) {
+        if (news == null) {
             log.error("Null in deleteNewsList()");
 
             return !success;
         }
 
-        return newsDAO.deleteNewsList(IDsList);
+        News entity = NewsDTOConverter.DTO2Entity(news);
+
+        return newsDAO.deleteNews(entity);
     }
 }
 

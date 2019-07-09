@@ -73,13 +73,14 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.PATCH)
-    public ResponseEntity<Void> deleteNewsList(@RequestBody List<Long> newsIDs) {
-        boolean success = newsService.deleteNewsList(newsIDs);
-
-        if (!success) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Void> deleteNewsList(@RequestBody List<NewsDTO> news) {
+        news.forEach(this::deleteNews);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("#news.username == authentication.principal.username")
+    private void deleteNews(NewsDTO news) {
+        newsService.deleteNews(news);
     }
 }

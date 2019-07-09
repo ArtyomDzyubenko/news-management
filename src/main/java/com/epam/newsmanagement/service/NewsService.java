@@ -8,5 +8,5 @@ public interface NewsService {
     boolean saveNews(NewsDTO news);
     NewsDTO findNewsById(Long id);
     boolean updateNews(NewsDTO news);
-    boolean deleteNewsList(List<Long> IDsList);
+    boolean deleteNews(NewsDTO news);
 }
