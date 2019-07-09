@@ -83,7 +83,7 @@
 
     <table>
         <tr>
-            <th>ID</th>
+            <th><spring:message code="app.news.username"/></th>
             <th><spring:message code="app.news.title"/></th>
             <th><spring:message code="app.news.date"/></th>
             <th><spring:message code="app.news.brief"/></th>
@@ -91,7 +91,7 @@
             <th><input type="button" ng-click="newsCtrl.removeNewsList()" value="<spring:message code="app.news.button.delete"/>"/></th>
         </tr>
         <tr ng-repeat="row in newsCtrl.newsList">
-            <td><span ng-bind="row.id"></span></td>
+            <td><span ng-bind="row.username"></span></td>
             <td><span ng-bind="row.title"></span></td>
             <td><span ng-bind="row.date"></span></td>
             <td><div span class="angular-with-newlines"><span ng-bind="row.brief"></span></div></td>

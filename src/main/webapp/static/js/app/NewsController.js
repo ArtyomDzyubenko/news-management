@@ -87,6 +87,7 @@ angular.module('myApp').controller('NewsController', ['$scope', 'NewsService', f
         for(var i = 0; i < self.newsList.length; i++){
             if(self.newsList[i].id === id) {
                 self.news = angular.copy(self.newsList[i]);
+                console.log('username', self.news.username);
                 break;
             }
         }

@@ -5,7 +5,6 @@ import com.epam.newsmanagement.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -57,7 +56,6 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.PUT)
-    @PreAuthorize("#news.username == authentication.principal.username")
     public ResponseEntity<NewsDTO> updateNews(@Valid @RequestBody NewsDTO news, BindingResult result) {
         if (result.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -74,13 +72,8 @@ public class NewsController {
 
     @RequestMapping(value = "/news", method = RequestMethod.PATCH)
     public ResponseEntity<Void> deleteNewsList(@RequestBody List<NewsDTO> news) {
-        news.forEach(this::deleteNews);
+        news.forEach(newsService::deleteNews);
 
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PreAuthorize("#news.username == authentication.principal.username")
-    private void deleteNews(NewsDTO news) {
-        newsService.deleteNews(news);
     }
 }

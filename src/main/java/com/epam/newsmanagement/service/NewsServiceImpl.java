@@ -67,6 +67,7 @@ public class NewsServiceImpl implements NewsService {
 
         return NewsDTOConverter.Entity2DTO(entity);
     }
+
     @Override
     public boolean updateNews(NewsDTO news) {
         boolean success = true;
