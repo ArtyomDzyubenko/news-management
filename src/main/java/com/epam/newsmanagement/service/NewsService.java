@@ -9,9 +9,9 @@ public interface NewsService {
     boolean saveNews(NewsDTO news);
     NewsDTO findNewsById(Long id);
 
-    @PreAuthorize("#news.username == authentication.principal.username")
+    @PreAuthorize("#news.username == authentication.principal.username or hasRole('ROLE_ADMIN')")
     boolean updateNews(NewsDTO news);
 
-    @PreAuthorize("#news.username == authentication.principal.username")
+    @PreAuthorize("#news.username == authentication.principal.username or hasRole('ROLE_ADMIN')")
     boolean deleteNews(NewsDTO news);
 }
