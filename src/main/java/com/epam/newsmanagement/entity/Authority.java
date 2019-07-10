@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "AUTHORITY")
+@Table(name = "ROLES")
 public class Authority implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "AUTHORITY")
+    @Column(name = "ROLE")
     private String authority;
 
     @Id
